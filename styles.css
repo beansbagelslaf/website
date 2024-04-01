@@ -1,5 +1,3 @@
-/* styles.css */
-
 /* Base Styles */
 body {
   font-family: "Lato", sans-serif; /* New font family */
@@ -86,9 +84,8 @@ p {
   max-width: 100%; /* Ensures the image does not exceed the width of its container */
   max-height: 100%; /* Ensures the image does not exceed the height of its container */
   object-fit: contain; /* Ensures the image maintains its aspect ratio without distortion */
-  margin-top: 100px; /* Pushes the image down from the top of the container */
-  margin-left: 150px; /* Pulls the image in from the right of the container */
-  /* Adjust the margin values as needed to position the image */
+  margin-top: 100px; /* Adjusted for mobile responsiveness */
+  margin-left: 0; /* Adjusted for mobile responsiveness */
 }
 
 /* Form Styles */
@@ -133,60 +130,63 @@ label {
 }
 
 /* Responsive Design */
+/* Base Styles and Desktop Specific Styles */
+/* Ensure the base styles do not implicitly disrupt the desktop layout */
+
+.container {
+  display: flex;
+  justify-content: center; /* Centers children horizontally */
+  align-items: center; /* Centers children vertically, adjust if necessary */
+  width: 80%;
+  margin: auto;
+  min-height: 60vh; /* Maintains minimum height for vertical centering */
+}
+
+.form-container {
+  display: flex; /* Enables flexbox for the form container */
+  justify-content: center; /* Center the form horizontally */
+  align-items: center; /* Center the form vertically, adjust if needed */
+  width: 100%; /* Ensures form container takes full width of its parent */
+}
+
+/* Adjustments to form itself to ensure it's centered within its container */
+form {
+  width: 100%; /* Full width for better responsiveness */
+  max-width: 800px; /* Max width to prevent the form from stretching too wide */
+  margin: 2em auto; /* Auto margins center the form horizontally */
+  padding: 2em; /* Keeps form padding */
+  background: #fff; /* Background color */
+  border-radius: 5px; /* Rounded corners for aesthetics */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Responsive Design Adjustments */
 @media (max-width: 768px) {
   .container {
-    flex-direction: column;
-    align-items: stretch; /* Stretch to fit the mobile screen width */
+    flex-direction: column; /* Stacks children vertically on smaller screens */
+    width: 95%; /* Adjusts width for small screen padding */
   }
 
+  /* On mobile, allow text and image containers to take full width */
   .text-container,
   .image-container {
-    width: 100%;
-    padding: 10px;
+    width: 100%; /* Full width for mobile */
+    padding: 10px; /* Adjust padding for mobile constraints */
   }
 
   .image-container img {
-    max-height: 300px; /* Set a maximum height for the image on mobile */
-    margin-left: 0; /* Reset left margin for mobile view */
+    margin-top: 20px; /* Adjust top margin for image on mobile */
+    margin-left: 0; /* Center image within its container on mobile */
   }
-}
 
-/* Add a unique class or ID selector for the message textarea */
-#message {
-  width: 100%;
-  height: 200px; /* Set a fixed height for the message box */
-  padding: 10px;
-  margin-top: 8px;
-  margin-bottom: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
+  /* Ensure form-container maintains its layout without affecting desktop */
+  .form-container {
+    margin-top: 20px; /* Adds margin on top for spacing on mobile */
+    width: auto; /* Resets width to default to avoid forcing 100% on mobile */
+  }
 
-/* Adjust other textarea styles as needed */
-textarea {
-  width: 100%;
-  font-family: "Lato", sans-serif; /* Use the same font family */
-  padding: 10px;
-  margin-top: 8px;
-  margin-bottom: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-
-/* Additional CSS for placing the form under the text */
-.form-container {
-  margin-top: 20px; /* Adjust margin as needed */
-}
-
-#order-form-container {
-  order: 2; /* This will ensure that the form-container is placed after the text-container */
-  width: 100%; /* To make sure it takes the full width available */
-}
-
-@media (min-width: 769px) {
-  .container#order-form-container {
-    flex-direction: column;
+  /* Specific form adjustments for mobile view for better usability */
+  form {
+    margin: 1em auto; /* Adjusted margin for mobile to add space */
   }
 }
